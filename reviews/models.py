@@ -1,8 +1,12 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
+from versatileimagefield.fields import VersatileImageField, PPOIField
 
 
 # Create your models here.
+
 
 class Company(models.Model):
     __COMPANY_MAX_NAME = 255
@@ -50,6 +54,10 @@ class Product(models.Model):
     )
     updated = models.DateField(
         auto_now=True
+    )
+    image = models.ManyToManyField(
+        'reviews.Image',
+        related_name='products'
     )
 
     class Meta:
@@ -125,3 +133,31 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class CustomerReportRecord(models.Model):
+    time_raised = models.DateTimeField(
+        default=datetime.datetime.now(),
+        editable=False
+    )
+    reference = models.CharField(
+        unique=True,
+        max_length=20
+    )
+    description = models.TextField()
+
+
+class Image(models.Model):
+    __IMAGE_MAX_NAME = 255
+    name = models.CharField(
+        max_length=__IMAGE_MAX_NAME
+    )
+    image = VersatileImageField(
+        'Image',
+        upload_to='images/',
+        ppoi_field='image_ppoi'
+    )
+    image_ppoi = PPOIField()
+
+    def __str__(self):
+        return self.name
