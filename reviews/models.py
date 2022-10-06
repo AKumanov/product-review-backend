@@ -135,18 +135,6 @@ class Comment(models.Model):
         return self.title
 
 
-class CustomerReportRecord(models.Model):
-    time_raised = models.DateTimeField(
-        default=datetime.datetime.now(),
-        editable=False
-    )
-    reference = models.CharField(
-        unique=True,
-        max_length=20
-    )
-    description = models.TextField()
-
-
 class Image(models.Model):
     __IMAGE_MAX_NAME = 255
     name = models.CharField(

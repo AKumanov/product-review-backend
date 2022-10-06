@@ -5,17 +5,6 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 
 
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-
-    @classmethod
-    def get_token(cls, user):
-        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
-
-        # Add custom claims
-        token['username'] = user.username
-        return token
-
-
 class ErrorHandler:
     _INVALID_PASSWORD1_ERROR_MESSAGE = "Password fields didn't match."
     _INVALID_PASSWORD2_ERROR_MESSAGE = "Old password is not correct."
@@ -74,7 +63,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class ChangePasswordSerializer(serializers.ModelSerializer, ErrorHandler):
-
     password = serializers.CharField(
         write_only=True,
         required=True,
@@ -125,7 +113,6 @@ class ChangePasswordSerializer(serializers.ModelSerializer, ErrorHandler):
 
 
 class UpdateUserSerializer(serializers.ModelSerializer, ErrorHandler):
-
     email = serializers.EmailField(
         required=True
     )
