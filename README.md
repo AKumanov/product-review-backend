@@ -49,7 +49,7 @@ product_review_backend
 
 ### database design:
 ____
-![alt text](../../product_review_database_img.PNG)
+![alt text](./product_review_database_img.PNG)
 ____
 ### Content
 ___
