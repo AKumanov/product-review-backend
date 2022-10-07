@@ -2,13 +2,12 @@
 ___
 ### INSTALLATION
 ____
-clone git@github.com:AKumanov/product-review-backend.git
+clone [repo](git@github.com:AKumanov/product-review-backend.git)
 
 create a virtual env and activate
 
 install project dependencies
 
-docker-compose to start postgres
 ```
 pip install virtualenv
 env\scripts\activate
